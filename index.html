@@ -32,7 +32,7 @@ am4core.ready(function() {
 
     //  Create axes
     var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-    dateAxis.renderer.minGridDistance = 60;
+//     dateAxis.renderer.minGridDistance = 60;
 
     // Create value axis
     var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
@@ -53,6 +53,7 @@ am4core.ready(function() {
         var series = chart.series.push(new am4charts.LineSeries());
         series.dataFields.valueY = name;
         series.dataFields.dateX = "date";
+        series.tooltipText = name+":{"+name+"}"
         series.name = name;
 
         var segment = series.segments.template;
