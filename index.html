@@ -10,13 +10,6 @@
 </head>
     
 <body>
-    <!-- <button type="button" name="seach" onclick="FuncCSVInport()">CSV Import</button>
-    <input type="file" id="csvFileInput" onchange="readCSVFile(this)" />
-    #csvFileInput{
-        position: absolute;
-        right: 0px;
-        opacity: 0;
-    } -->
     <div id="chartdiv"></div>
     <style>
     #chartdiv {
@@ -36,33 +29,8 @@ am4core.ready(function() {
     chart.dataSource.url = "/India_daily_generation-2016-v0.2_20201219.csv";
     chart.dataSource.parser = new am4core.CSVParser();
     chart.dataSource.parser.options.useColumnNames = true;
-    // var data = [];
-    // var value = 50;
-    // var value2 = 10;
-    // for(var i = 0; i < 300; i++){
-    // var date = new Date();
-    // date.setHours(0,0,0,0);
-    // date.setDate(i);
-    // value -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-    // value2 -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100);
-    // data.push({date:date, value: value,value2:value2});
-    // }
-    // chart.data = data;
 
-    // // Create axes
-    // var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-    // dateAxis.renderer.minGridDistance = 60;
-    // // var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-    // // categoryAxis.dataFields.category = "date";
-
-    // var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    // valueAxis.title.text = "Emissions";
-    // valueAxis.renderer.minLabelPosition = 0.01;
-
-
-    // // Create axes
-    // var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-    // categoryAxis.dataFields.category = "year";
+    //  Create axes
     var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.minGridDistance = 60;
 
@@ -79,6 +47,7 @@ am4core.ready(function() {
     series1.name = "coal";
     series1.strokeWidth = 3;
     series1.tensionX = 0.7;
+    series1.legendSettings.valueText = "{valueY}";
     // series1.bullets.push(new am4charts.CircleBullet());
 
     var series2 = chart.series.push(new am4charts.LineSeries());
@@ -89,6 +58,7 @@ am4core.ready(function() {
     series2.name = "gas";
     series2.strokeWidth = 3;
     series2.tensionX = 0.7;
+    series2.legendSettings.valueText = "{valueY}";
     // series2.bullets.push(new am4charts.CircleBullet());
 
     var series3 = chart.series.push(new am4charts.LineSeries());
@@ -99,36 +69,59 @@ am4core.ready(function() {
     series3.name = "oil";
     series3.strokeWidth = 3;
     series3.tensionX = 0.7;
+    series3.legendSettings.valueText = "{valueY}";
     // series3.bullets.push(new am4charts.CircleBullet());
 
-
-
-
-
-    // var series = chart.series.push(new am4charts.LineSeries());
-    // series.name = "coal";
-    // // series.bullets.push(new am4charts.CircleBullet());
-    // series.dataFields.valueY = "value";
-    // // series.dataFields.categoryX = "date"
-    // series.dataFields.dateX = "date";
-    // series.tooltipText = "coal:{value}"
-    // series.legendSettings.valueText = "{valueY}";
-    // // series.visible  = false;
-
-    // var series2 = chart.series.push(new am4charts.LineSeries());
-    // series2.name = "co2";
-    // series2.dataFields.valueY = "value2";
-    // series2.dataFields.dateX = "date";
-    // // series2.dataFields.categoryX = "date"
-    // series2.tooltipText = "{value2}"
-    // series2.legendSettings.valueText = "{valueY}";
-
-    // series.tooltip.pointerOrientation = "vertical";
-    // series2.tooltip.pointerOrientation = "vertical";
-    
-    // series.propertyFields.fill = "color";
-    // series.propertyFields.stroke = "color";
-
+    var series4 = chart.series.push(new am4charts.LineSeries());
+    series4.dataFields.valueY = "nuclear";
+    series4.dataFields.dateX = "date";
+    // series3.dataFields.categoryX = "date";
+    series4.tooltipText = "nuclear:{v}"
+    series4.name = "nuclear";
+    series4.strokeWidth = 3;
+    series4.tensionX = 0.7;
+    series4.legendSettings.valueText = "{valueY}";  
+  
+    var series5 = chart.series.push(new am4charts.LineSeries());
+    series5.dataFields.valueY = "hydro";
+    series5.dataFields.dateX = "date";
+    // series3.dataFields.categoryX = "date";
+    series5.tooltipText = "hydro:{hydro}"
+    series5.name = "hydro";
+    series5.strokeWidth = 3;
+    series5.tensionX = 0.7;
+    series5.legendSettings.valueText = "{valueY}";  
+ 
+    var series6 = chart.series.push(new am4charts.LineSeries());
+    series6.dataFields.valueY = "wind";
+    series6.dataFields.dateX = "date";
+    // series3.dataFields.categoryX = "date";
+    series6.tooltipText = "wind:{wind}"
+    series6.name = "wind";
+    series6.strokeWidth = 3;
+    series6.tensionX = 0.7;
+    series6.legendSettings.valueText = "{valueY}";  
+  
+    var series7 = chart.series.push(new am4charts.LineSeries());
+    series7.dataFields.valueY = "solar";
+    series7.dataFields.dateX = "date";
+    // series3.dataFields.categoryX = "date";
+    series7.tooltipText = "solar:{solar}"
+    series7.name = "solar";
+    series7.strokeWidth = 3;
+    series7.tensionX = 0.7;
+    series7.legendSettings.valueText = "{valueY}";  
+  
+    var series8 = chart.series.push(new am4charts.LineSeries());
+    series8.dataFields.valueY = "other";
+    series8.dataFields.dateX = "date";
+    // series3.dataFields.categoryX = "date";
+    series8.tooltipText = "other:{other}"
+    series8.name = "other";
+    series8.strokeWidth = 3;
+    series8.tensionX = 0.7;
+    series8.legendSettings.valueText = "{valueY}";     
+  
     chart.cursor = new am4charts.XYCursor();
     chart.cursor.snapToSeries = series;
     chart.cursor.xAxis = dateAxis;
@@ -146,8 +139,28 @@ am4core.ready(function() {
     series2.segments.template.strokeWidth = 1;
 
     let hs3 = series3.segments.template.states.create("hover")
-    hs2.properties.strokeWidth = 5;
-    series2.segments.template.strokeWidth = 1;
+    hs3.properties.strokeWidth = 5;
+    series3.segments.template.strokeWidth = 1;
+  
+    let hs4 = series4.segments.template.states.create("hover")
+    hs4.properties.strokeWidth = 5;
+    series4.segments.template.strokeWidth = 1;
+
+    let hs5 = series5.segments.template.states.create("hover")
+    hs5.properties.strokeWidth = 5;
+    series5.segments.template.strokeWidth = 1;
+
+    let hs6 = series6.segments.template.states.create("hover")
+    hs6.properties.strokeWidth = 5;
+    series6.segments.template.strokeWidth = 1;
+
+    let hs7 = series7.segments.template.states.create("hover")
+    hs7.properties.strokeWidth = 5;
+    series7.segments.template.strokeWidth = 1;
+  
+    let hs8 = series8.segments.template.states.create("hover")
+    hs8.properties.strokeWidth = 5;
+    series8.segments.template.strokeWidth = 1;
 
     chart.legend = new am4charts.Legend();
     chart.legend.itemContainers.template.events.on("over", function(event){
