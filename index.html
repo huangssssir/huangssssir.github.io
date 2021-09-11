@@ -64,7 +64,7 @@ am4core.ready(function() {
         segment.interactionsEnabled = true;
 
         var hoverState = segment.states.create("hover");
-        hoverState.properties.strokeWidth = 3;
+        hoverState.properties.strokeWidth = 7;
 
         var dimmed = segment.states.create("dimmed");
         dimmed.properties.stroke = am4core.color("#dadada");
@@ -82,8 +82,13 @@ am4core.ready(function() {
 
     chart.legend = new am4charts.Legend();
     chart.legend.position = "right";
-    chart.legend.scrollable = true;
-  
+    chart.legend.useDefaultMarker = true;
+    let marker = chart.legend.markers.template.children.getIndex(0);
+    marker.cornerRadius(12, 12, 12, 12);
+    marker.strokeWidth = 2;
+    marker.strokeOpacity = 1;
+    marker.stroke = am4core.color("#ccc");
+
     chart.scrollbarX = new am4core.Scrollbar();
   
 
