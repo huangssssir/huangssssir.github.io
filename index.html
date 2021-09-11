@@ -79,7 +79,13 @@ am4core.ready(function() {
     chart.legend = new am4charts.Legend();
     chart.legend.position = "right";
     chart.legend.scrollable = true;
-
+  
+    chart.scrollbarX = new am4core.Scrollbar();
+  
+    chart.cursor = new am4charts.XYCursor();
+    chart.cursor.snapToSeries = series;
+    chart.cursor.xAxis = dateAxis;  
+  
     // setTimeout(function() {
     //   chart.legend.markers.getIndex(0).opacity = 0.3;
     // }, 3000)
