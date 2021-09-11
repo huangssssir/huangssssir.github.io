@@ -65,34 +65,23 @@ am4core.ready(function() {
 
         var hoverState = segment.states.create("hover");
         hoverState.properties.strokeWidth = 3;
-        
 
         var dimmed = segment.states.create("dimmed");
         dimmed.properties.stroke = am4core.color("#dadada");
 
         segment.events.on("over", function(event) {
-            processOver(event.target.parent.parent.parent);
+          processOver(event.target.parent.parent.parent);
         });
 
         segment.events.on("out", function(event) {
-            processOut(event.target.parent.parent.parent);
+          processOut(event.target.parent.parent.parent);
         });
-
         return series;
     }
 
     chart.legend = new am4charts.Legend();
     chart.legend.position = "right";
     chart.legend.scrollable = true;
-    chart.legend.useDefaultMarker = true;
-    let marker = chart.legend.markers.template.children.getIndex(0);
-    marker.cornerRadius(12, 12, 12, 12);
-    marker.strokeWidth = 2;
-    marker.strokeOpacity = 1;
-    marker.stroke = am4core.color("#ccc");
-
-    chart.scrollbarX = new am4core.Scrollbar();
-  
 
     // setTimeout(function() {
     //   chart.legend.markers.getIndex(0).opacity = 0.3;
@@ -101,48 +90,48 @@ am4core.ready(function() {
     chart.legend.labels.template.states.create("dimmed").properties.opacity = 0.3;
 
     chart.legend.itemContainers.template.events.on("over", function(event) {
-    processOver(event.target.dataItem.dataContext);
+      processOver(event.target.dataItem.dataContext);
     })
 
     chart.legend.itemContainers.template.events.on("out", function(event) {
-    processOut(event.target.dataItem.dataContext);
+      processOut(event.target.dataItem.dataContext);
     })
 
     function processOver(hoveredSeries) {
-    hoveredSeries.toFront();
+      hoveredSeries.toFront();
 
-    hoveredSeries.segments.each(function(segment) {
+      hoveredSeries.segments.each(function(segment) {
         segment.setState("hover");
-    })
-    
-    hoveredSeries.legendDataItem.marker.setState("default");
-    hoveredSeries.legendDataItem.label.setState("default");
+      })
 
-    chart.series.each(function(series) {
+      hoveredSeries.legendDataItem.marker.setState("default");
+      hoveredSeries.legendDataItem.label.setState("default");
+
+      chart.series.each(function(series) {
         if (series != hoveredSeries) {
-        series.segments.each(function(segment) {
+          series.segments.each(function(segment) {
             segment.setState("dimmed");
-        })
-        series.bulletsContainer.setState("dimmed");
-        series.legendDataItem.marker.setState("dimmed");
-        series.legendDataItem.label.setState("dimmed");
+          })
+          series.bulletsContainer.setState("dimmed");
+          series.legendDataItem.marker.setState("dimmed");
+          series.legendDataItem.label.setState("dimmed");
         }
-    });
+      });
     }
 
     function processOut() {
-    chart.series.each(function(series) {
+      chart.series.each(function(series) {
         series.segments.each(function(segment) {
-        segment.setState("default");
+          segment.setState("default");
         })
         series.bulletsContainer.setState("default");
         series.legendDataItem.marker.setState("default");
         series.legendDataItem.label.setState("default");
-    });
+      });
     }
 
     document.getElementById("button").addEventListener("click", function(){
-    processOver(chart.series.getIndex(3));
+      processOver(chart.series.getIndex(3));
     })
 }); // end am4core.ready()
     </script>
