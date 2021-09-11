@@ -56,6 +56,10 @@ am4core.ready(function() {
         series.tooltipText = name+":{"+name+"}"
         series.name = name;
 
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.snapToSeries = series;
+        chart.cursor.xAxis = dateAxis;
+      
         var segment = series.segments.template;
         segment.interactionsEnabled = true;
 
@@ -82,10 +86,7 @@ am4core.ready(function() {
   
     chart.scrollbarX = new am4core.Scrollbar();
   
-    chart.cursor = new am4charts.XYCursor();
-    chart.cursor.snapToSeries = series;
-    chart.cursor.xAxis = dateAxis;  
-  
+
     // setTimeout(function() {
     //   chart.legend.markers.getIndex(0).opacity = 0.3;
     // }, 3000)
