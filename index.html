@@ -57,7 +57,7 @@ am4core.ready(function() {
         series.name = name;
 
         chart.cursor = new am4charts.XYCursor();
-        chart.cursor.snapToSeries = chart.series;
+        chart.cursor.snapToSeries = series;
         chart.cursor.xAxis = dateAxis;
       
         var segment = series.segments.template;
