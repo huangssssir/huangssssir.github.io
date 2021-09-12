@@ -50,6 +50,7 @@ am4core.ready(function() {
     
 
     chart.cursor = new am4charts.XYCursor();
+    chart.cursor.behavior = "none"
     function createSeries(name) {
         var series = chart.series.push(new am4charts.LineSeries());
         series.dataFields.valueY = name;
