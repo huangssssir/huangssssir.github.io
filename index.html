@@ -51,11 +51,13 @@ am4core.ready(function() {
 
     chart.cursor = new am4charts.XYCursor();
     chart.cursor.behavior = "none"
+    chart.cursor.maxTooltipDistance = 10;
     function createSeries(name) {
         var series = chart.series.push(new am4charts.LineSeries());
         series.dataFields.valueY = name;
         series.dataFields.dateX = "date";
         series.tooltipText = name+":{"+name+"}"
+        series.legendSettings.itemValueText = "{valueY}";
         series.name = name;
       
 //         chart.cursor.snapToSeries = series;
@@ -84,6 +86,12 @@ am4core.ready(function() {
     chart.legend = new am4charts.Legend();
     chart.legend.position = "right";
     chart.legend.scrollable = true;
+    chart.legend.useDefaultMarker = true;
+    var marker = chart.legend.markers.template.children.getIndex(0);
+    marker.cornerRadius(12, 12, 12, 12);
+    marker.strokeWidth = 2;
+    marker.strokeOpacity = 1;
+    marker.stroke = am4core.color("#ccc");
   
     chart.scrollbarX = new am4core.Scrollbar();
   
